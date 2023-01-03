@@ -1,0 +1,44 @@
+ALGORITHM Hash_tab ;
+
+VAR 
+    set_Keys : ARRAY_OF INTEGER [20]
+    set1 : ARRAY_OF INTEGER[10]; 
+    set2 : ARRAY_OF INTEGER[10];
+    HT : HASH_TABLE<integer,integer>
+    i : integer
+    count : INTEGER := 0
+    sum : INTEGER := 0
+   
+BEGIN
+
+   FOR i FROM 0 TO set1.length STEP step 1  DO
+    IF (HT.lookup(set1[i]) = true ) THEN
+        count := HT.get(set1[i])
+        HT.insert(set1[i] , count+1)
+    ELSE
+        HT.inser(set1[i] , 1)
+    END_IF
+   END_FOR
+
+
+   FOR i FROM 0 TO set2.length STEP step 1  DO
+    IF (HT.lookup(set2[i]) = true ) THEN
+        count := HT.get(set2[i])
+        HT.insert(set2[i] , count+1)
+    ELSE
+        HT.inser(set2[i] , 1)
+    END_IF
+   END_FOR
+
+
+   set_Keys:= HT.getKeys();
+   FOR i FROM 0 TO set_Keys.length STEP step 1 DO
+       IF (HT.get(set_Keys[i]) = 1 ) THEN
+        sum := sum + set_Keys[i]
+       END_IF
+   END_FOR
+
+
+   write(sum)
+
+END
